@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[top=1in,bottom=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{ {./assets/} }
+\usepackage[none]{hyphenat}
+\date{}
+\title{MATH410 Advanced Calculus}
+\begin{document} 
+  \author{Michael Li}
+  \title{MATH410 Advanced Calculus}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \section{Foundations} 
+  \subsection{Law of Induction}
+  \begin{enumerate}
+    \item Given a statement $S(n)$ for $n \geq n_0$
+    \item Show the base case $S(n_0)$ is valid
+    \item State the Inductive Hypothesis: assume $S(n)$ is valid for an arbitrary $n \geq n_0$
+    \item Prove Inductive Step: given $S(n)$ is valid, prove that $S(n+1)$ is valid
+    \item Then by Law of Induction, $\forall n \geq n_0, S(n)$ is valid
+  \end{enumerate}
+  \subsection{Proof by Contradiction}
+  If we want $P \implies Q$, assume $\neg Q$ and try to produce $\neg P$.
+  \subsection{$\sqrt{5}$ Irrational Proof}
+  \textbf{Definition}: a rational $q = \frac{p}{q}$ where $p, q \in \mathbb{Z}, q \neq 0, \text{ and } p/q$ is a reduced fraction. \\ \\
+  Proof by contradiction: assume $\sqrt{5}$ is rational. \\ \\
+  This implies that $\sqrt{5} = \frac{p}{q}$ where $p, q \in \mathbb{Z}, q \neq 0, \text{ and } p/q$ is a reduced fraction. \\ \\
+  Then $p = \sqrt{5}q \implies p^2 = 5q^2$ which implies $5 | p^2 \implies 5|p$. \\ \\
+  Thus for some $k \in \mathbb{Z}$, $p = 5k \implies p^2 = 25k^2 = 5q^2$ \\ \\
+  This implies $5 |q^2 \implies 5|q$ which is a contradiction since $5|p$ and $5|q$. \\ \\
+  Thus the premise is false and $\sqrt{5}$ is irrational.
+  \section{Properties of $\mathbb{R}$}
+  \subsection{Boundness}
+  \textbf{Definition}: if $S \subseteq \mathbb{R}$ is non-empty, then $S$ is \textbf{bounded above} if $\exists c \in \mathbb{R}, \forall x \in S, b \geq x$ \\ \\
+  \textbf{Definition}: if $S \subseteq \mathbb{R}$ is non-empty, then $S$ is \textbf{bounded below} if $\exists c \in \mathbb{R}, \forall x \in S, a \leq x$ \\ \\
+  \textbf{Definition}: if $b$ is an upperbound of $S$ and $b$ is the least upperbound of $S$, then $b = \sup{S}$ \\ \\
+  \textbf{Definition}: if $a$ is a lowerbound of $S$ and $b$ is the greatest lowerbound of $S$, then $a = \inf{S}$
+  \subsubsection{Completeness Axiom}
+  The follow properties exist for any set $S \subseteq \mathbb{R}$:
+  \begin{itemize}
+    \item if $S$ has an upperbound, it has a least upperbound.
+    \item if $S$ has a lowerbound, it has a greatest lowerbound.
+  \end{itemize}
+  \subsection{Density in $\mathbb{R}$}
+  \subsubsection{Archimedean Property}
+  Following 2 properties are equivalent:
+  \begin{itemize}
+    \item for an arbitrary $c > 0$, $\exists n \in \mathbb{N}, n > c$ 
+    \item for an arbitrary $c > 0$, $\exists n \in mathbb{N}, 0 < \frac{1}{n} < c$
+  \end{itemize}
+  \subsubsection{Definition of Density}
+  \textbf{Definition}: a set $S$ is dense in $\mathbb{R}$ if for each non-empty interval $(a, b)$, $\exists x \in S$ in $(a,b)$  \\ \\
+  \textbf{Theorem} $\mathbb{Q}$ is dense in $\mathbb{R}$: for any arbitrary $a,b$ where $a < b$, $\exists q \in \mathbb{Q}$ in the interval $(a,b)$ \\ \\
+  \textbf{Theorem}: Irrationals $\mathbb{I}$ is dense in $\mathbb{R}$
+  \section{Absolute Values}
+  \subsection{Properties of Absolute Value}
+  The following are notable properties:
+  \begin{itemize}
+    \item $-|x| \leq x \leq |x|$
+    \item if $|x| \leq d$ then $-d \leq x \leq d$
+    \item $|b-a| < d \equiv a-d < b < a + d$
+  \end{itemize}
+  \subsection{Triangle Inequality}
+  $|a + b| \leq |a| + |b|$
+  \section{Numerical Formulas}
+  \textbf{Difference of Powers Formula}:
+  \[a^n - b^n = (a-b)\sum_{k=0}^{n-1}a^{n-1-k}b^{k}\]
+  \textbf{Geometric Sum Formula}:
+  \[\sum_{k=0}^{n}r^k = \frac{1-r^{n+1}}{1-r}\]
+  \textbf{Binomial Formula}:
+  \[(a+b)^n = \sum_{k=0}^{n} \binom{n}{k}a^{n-k}b^k\]
+  \section{Sequences}
+  \textbf{Definition}: a \textbf{sequence} $\{a_n\}$ is a function $f$ whose domain is $n \in \mathbb{N}$ \\ \\
+  \textbf{Definition}: a sequence \textbf{converges} to $a$ if $\forall \epsilon > 0, \exists N$ such that $\forall n \geq N, |a_n - a| < \epsilon$, or \\ 
+  $a_n$ lies in the interval $(a - \epsilon, a + \epsilon)$ \\ \\
+  \textbf{Definition}: a sequence \textbf{diverges} if does not converge
+  \subsection{Comparison Lemma}
+  Assume $\{a_n\}$ converges to $a$, let $\{b_n\}$ be an arbitrary sequence, and let $b$ by an arbitrary number. \\ \\
+  If $\exists c \geq 0, \forall n \geq N, |b_n - b| \leq c|a_n - a|$ then $\{b_n\}$ converges to $b$
+  \subsection{Sequence Boundness}
+  A sequence $\{a_n\}$ is bounded if $\exists M, \forall n \geq N, |a_n| \leq M$ \\ \\
+  \textbf{Theorem}: Every convergent sequence is bounded
+  \subsection{Set Density Using Sequences}
+  A set $S$ is dense in $\mathbb{R}$ iff for each $x \in \mathbb{R}$, there is a sequence $\{a_n\} \subseteq S$ such that $\{a_n\}$ converges to $x$ \\ \\
+  \textbf{Definition}: a set $S$ is \textbf{closed} if whenever $\{a_n\} \subseteq S$ has the property that $\{a_n\}$ converges to $a$, then $a \in S$
+  \subsection{Monotone Sequences}
+  \textbf{Definition}: a sequence $\{a_n\}$ is \textbf{monotone increasing} if $\forall n \geq 1, a_n \leq a_{n+1}$ \\ \\
+  \textbf{Definition}: a sequence $\{a_n\}$ is \textbf{monotone decreasing} if $\forall n \geq 1, a_n \geq a_{n+1}$
+  \subsubsection{Monotone Convergence Theorem}
+  A monotone sequence converges iff it is bounded
+\end{document}
