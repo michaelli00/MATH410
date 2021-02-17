@@ -50,12 +50,17 @@
   Following 2 properties are equivalent:
   \begin{itemize}
     \item for an arbitrary $c > 0$, $\exists n \in \mathbb{N}, n > c$ 
-    \item for an arbitrary $c > 0$, $\exists n \in mathbb{N}, 0 < \frac{1}{n} < c$
+    \item for an arbitrary $c > 0$, $\exists n \in \mathbb{N}, 0 < \frac{1}{n} < c$
   \end{itemize}
   \subsubsection{Definition of Density}
   \textbf{Definition}: a set $S$ is dense in $\mathbb{R}$ if for each non-empty interval $(a, b)$, $\exists x \in S$ in $(a,b)$  \\ \\
   \textbf{Theorem} $\mathbb{Q}$ is dense in $\mathbb{R}$: for any arbitrary $a,b$ where $a < b$, $\exists q \in \mathbb{Q}$ in the interval $(a,b)$ \\ \\
-  \textbf{Theorem}: Irrationals $\mathbb{I}$ is dense in $\mathbb{R}$
+  \textbf{Proof}: by Archimedean property, $\exists n \in \mathbb{Z}$ such that $0 < \frac{1}{n} < \frac{b-a}{2} \implies \frac{2}{n} < b-a$ \\ \\
+    This then gives the inequality $a < a + \frac{1}{n} < a + \frac{2}{n} < b$ \\ \\
+    Thus there has to be a $k \in \mathbb{Z}$ such that $\frac{k}{n}$ is in $(a,b)$ and $\frac{k}{n} \in \mathbb{Q}$ \\ \\
+  \textbf{Corollary}: Irrationals $\mathbb{I}$ is dense in $\mathbb{R}$ \\ \\
+  \textbf{Proof}: from the theorem above, we know that $\exists r, s \in \mathbb{Q}, a < r < s < b$ \\ \\
+  Let $t = r + \frac{1}{\sqrt{2}}(s-r)$ thus $t$ is irrational and $a < r < t < s < b$
   \section{Absolute Values}
   \subsection{Properties of Absolute Value}
   The following are notable properties:
@@ -68,11 +73,11 @@
   $|a + b| \leq |a| + |b|$
   \section{Numerical Formulas}
   \textbf{Difference of Powers Formula}:
-  \[a^n - b^n = (a-b)\sum_{k=0}^{n-1}a^{n-1-k}b^{k}\]
+  \[a^n - b^n = (a-b)(a^{n-1} + a^{n-2}b + \ldots + ab^{n-2} + b^{n-1}) = (a-b)\sum_{k=0}^{n-1}a^{n-1-k}b^{k}\]
   \textbf{Geometric Sum Formula}:
   \[\sum_{k=0}^{n}r^k = \frac{1-r^{n+1}}{1-r}\]
   \textbf{Binomial Formula}:
-  \[(a+b)^n = \sum_{k=0}^{n} \binom{n}{k}a^{n-k}b^k\]
+  \[(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + \ldots + {n \choose n-1}ab^{n-1} + {n \choose n}b^n = \sum_{k=0}^{n} \binom{n}{k}a^{n-k}b^k\]
   \section{Sequences}
   \textbf{Definition}: a \textbf{sequence} $\{a_n\}$ is a function $f$ whose domain is $n \in \mathbb{N}$ \\ \\
   \textbf{Definition}: a sequence \textbf{converges} to $a$ if $\forall \epsilon > 0, \exists N$ such that $\forall n \geq N, |a_n - a| < \epsilon$, or \\ 
@@ -83,13 +88,81 @@
   If $\exists c \geq 0, \forall n \geq N, |b_n - b| \leq c|a_n - a|$ then $\{b_n\}$ converges to $b$
   \subsection{Sequence Boundness}
   A sequence $\{a_n\}$ is bounded if $\exists M, \forall n \geq N, |a_n| \leq M$ \\ \\
-  \textbf{Theorem}: Every convergent sequence is bounded
+  \textbf{Theorem}: Every convergent sequence is bounded \\ \\
+  \textbf{Proof}: let $\epsilon > 0$ by arbitrary. $\exists N$ such that for $n \geq N, |a_n - a| < \epsilon$ by definition of convergence. \\ \\
+  Let $M = \max(|a_1|, |a_2|, \ldots, |a_N|, |a_N| + \epsilon)$ then $\forall n \geq 1, |a_n| \leq M$
   \subsection{Set Density Using Sequences}
-  A set $S$ is dense in $\mathbb{R}$ iff for each $x \in \mathbb{R}$, there is a sequence $\{a_n\} \subseteq S$ such that $\{a_n\}$ converges to $x$ \\ \\
+  \textbf{Definition}: A set $S$ is \textbf{dense} in $\mathbb{R}$ iff for each $x \in \mathbb{R}$, there is a sequence $\{a_n\} \subseteq S$ such that $\{a_n\}$ converges to $x$ \\ \\
   \textbf{Definition}: a set $S$ is \textbf{closed} if whenever $\{a_n\} \subseteq S$ has the property that $\{a_n\}$ converges to $a$, then $a \in S$
   \subsection{Monotone Sequences}
   \textbf{Definition}: a sequence $\{a_n\}$ is \textbf{monotone increasing} if $\forall n \geq 1, a_n \leq a_{n+1}$ \\ \\
   \textbf{Definition}: a sequence $\{a_n\}$ is \textbf{monotone decreasing} if $\forall n \geq 1, a_n \geq a_{n+1}$
   \subsubsection{Monotone Convergence Theorem}
-  A monotone sequence converges iff it is bounded
+  A monotone sequence converges iff it is bounded \\ \\
+  \textbf{How to use}: prove that a sequence is bounded and is either monotonically increasing or decreasing. Then apply MCT to say the sequence must converge.
+  \subsubsection{Nested Interval Theorem}
+  Let $I_n = [a_n, b_n]$ with $I_{n+1} \subseteq I_n$ for $n \geq 1$. Assume $\lim_{n \rightarrow \infty}(b_n - a_b) = 0$. Then there is a unique $x$ in each $I_n$ and $\lim_{n \rightarrow \infty}{a_n} = x = \lim_{n \rightarrow \infty}{b_n}$ \\ \\
+  \textbf{Proof}: Since $I_{n+1} \subseteq I_n$, $\{a_n\}$ is monotonically increasing and $\{b_n\}$ is monotonically decreasing. However, both $\{a_n\}$ and $\{b_n\}$ bound each other. Thus by Monotone Convergence Theorem, $\{a_n\}$ converges to some $a$ and $\{b_n\}$ converges to some $b$. \\ \\
+  However, because $\lim_{n \rightarrow \infty}(b_n - a_n) = 0$, we conclude that $a = \lim_{a \rightarrow \infty}{a_n} = \lim_{n \rightarrow \infty}{b_n} = b = x$
+  \subsection{Subsequences}
+  \textbf{Definition}: let given a sequence $\{a_n\}$ and a sequence of indices $n_k, n_{k+1}, \ldots$. \\ \\
+  If $b_k = a_{n_k}$ for all $k \geq 1$ then $\{b_k\}$ is a \textbf{subsequence} of $\{a_n\}$ \\ \\
+  \textbf{Definition}: for a sequence $\{a_n\}$, if there is an index $m$ such that $\forall n \geq m, a_m \geq a_n$, then $m$ is a \textbf{peak index} \\ \\
+  \textbf{Theorem}: every sequence $\{a_n\}$ has a monotone subsequence. \\ \\
+  \textbf{Proof}: case 1: there are infinitely many peak indices then $\{a_n\}$ is monotonically decreasing and so is $\{a_{n_k}\}$ \\ \\
+  case 2: there are finitely many peak indices. Then there must a index $n_{k_0}$ such that no peak indices are bigger than it. We can define a subsequence for indices $n > n_{k_0}$ and this subsequence is monotonically increasing. \\ \\
+  \textbf{Corollary}: every bounded sequence has a convergent subsequence \\ \\
+  \textbf{Proof}: by the previous theorem, the bounded sequence must have a monotone subsequence. By Monotone Convergence Theorem, this subsequence must be convergent. \\ \\
+  \textbf{Definition}: a set $S$ is \textbf{sequentially compact} if every sequence $\{a_n\} \subseteq S$ has a subsequence converging on an element of $S$. \\ \\
+  \textbf{Theorem}: each closed, bounded interval $[a,b]$ is sequentially compact \\ \\
+  \textbf{Proof}: since a bounded sequence has a converge subsequence, the subsequence must converge to some $x$ in $[a,b]$.
+  \section{Continuous Functions}
+  \textbf{Definition}: $f \colon D \rightarrow R$ is \textbf{continuous} at $x_0$ in $D$ if for every sequence $\{x_n\} \subseteq D$, if $x_n \rightarrow x_0$, then $f(x_n) \rightarrow f(x_0)$. Furthermore, $f$ is a \textbf{continuous function} if it is continuous at each point in its domain. \\ \\
+  Sum, product, quotient properties of continuous functions
+  \subsection{Extreme Value Theorem}
+  \textbf{Definition}: for a function $f \colon D \rightarrow \mathbb{R}$, the set of \textbf{images} of $f$ is
+  \[f(D) = \{ y \mid y = f(x), \text{ for some } x \in D\}\]
+  \textbf{Definition}: $f$ attains a \textbf{maximum} provided that $f(D)$ has a maximum, meaning that there is some $x_0$ such that
+  \[\forall x \in D, f(x) \leq f(x_0)\]
+  \textbf{Definition}: such an $x_0$ is called the \textbf{maximizer} of $f$. \\ \\
+  Similar definitions can be provided for \textbf{minimum} and \textbf{minimizer}. \\ \\
+  A nonempty set has a maximum if it is both
+  \begin{enumerate}
+    \item bounded above 
+    \item contains its supremum
+  \end{enumerate}
+  \textbf{Extreme Value Theorem}: a continuous function on a closed bounded interval attains both a minimum and a maximum.
+  \[f \colon [a,b] \rightarrow \mathbb{R}\]
+  \textbf{Proof}:
+  \begin{enumerate}
+    \item The image $f(D)$ is bounded above: assume the contrary and that $f(x)$ is unbounded. We can define a sequence $\{x_n\}$ in $[a,b]$ and a subsequence $\{x_{n_k}\}$. By Sequential Compactness Theorem, $\{x_n{n_k}\}$ must converge to a point $x_0 \in [a,b]$ thus $\{f(x_{n_k}\}$ converges to $f(x_0)$. However, a convergent sequence is bounded contradiction is reached and the image of $f$ is bounded.
+    \item Show that $\sup{f(D)}$ is a functional value: let $S = f([a,b])$ and $c = \sup{S}$. This means that $c- 1/n$ is not an upper bound for $S$, so we have $\forall n > N, c- 1/n < f(x_n) \leq c$ and $\{f(x_n)\}$ converges to $c$. Thus $f$ contains the value $c$. \\
+    Similar proof can be applied to $-f$ to find the minimum of $f$.
+  \end{enumerate}
+  \subsection{Intermediate Value Theorem}
+  If $f \colon [a, b] \rightarrow \mathbb{R}$ is continuous, and there is a number $c$ such that 
+  \[f(a) < c < f(b) \text{ or } f(b) < c < f(a)\]
+  Then there is a point $x_0$ in $(a, b)$ such that $f(x_0) = c$ \\ \\
+  \textbf{Proof}: Bisection Method \\
+  Consider the case $f(a) < c < f(b)$. Define a sequence of nested, closed subintervals of $[a,b]$ whose endpoints converge to a point in $[a, b]$ \\
+  Consider the midpoint $m_n = (a_n + b_n)/2$
+  \begin{itemize}
+    \item If $f(m_n) \leq c$, define $a_{n+1} = m_n$ and $b_{n+1} = b_n$
+    \item If $f(m_n) > c$, define $a_{n+1} = a_n$ and $b_{n+1} = m_n$
+  \end{itemize}
+  This gives $a \leq a_n \leq a_{n+1} < b_{n+1} \leq b_n \leq b$ and by Nested Interval Theorem the sequences must converge to a unique $c$.
+  \subsection{Uniform Continuity}
+  \textbf{Definition}: a function $f \colon D \rightarrow \mathbb{R}$ is \textbf{uniformly continuous} if whenever sequence $\{u_n\}$ and $\{v_n\}$ of $D$ such that
+  \[ \lim_{n \rightarrow \infty}{[u_n - v_n]} = 0\]
+  then
+  \[lim_{n \rightarrow \infty}{[f(u_n) - f(v_n)]} = 0\]
+  Intuition is that $f(u) - f(v)$ becomes arbitrarily small for any two points $u$ and $v$ that are sufficiently close to each other. \\
+  INSERT PROOF that uniformly continuous implies continuous p67 \\ \\
+  \textbf{Theorem}: a continuous function on a closed boundary interval is uniformly continuous
+  \[f \colon [a, b] \rightarrow \mathbb{R}\]
+  \textbf{Proof}: by contradiction, suppose $\{f(u_n) - f(v_n)\}$ does not converge to $0$. Then for an arbitrary $\epsilon$, $|f(u_n( - f(v_n)| \geq \epsilon$ for every index $n$. However, by Sequential Compactness Theorem, $\{u_{n_k}\}$ and $\{v_{n_k}\}$ much converge to an $x_0$ in $[a,b]$. The 2 subsequences must converge to the same value because by hypothesis, $\lim_{n \rightarrow \infty}{[u_n - v_n]} = 0$. Thus
+  \[\lim_{k \righarrow \infty}{[f(u_{n_k}) - f(u_{n_k})] =\lim_{k \righarrow \infty}{[f(x_0) - f(x_0)] = 0\]
+      Thus a contradiction is reached.
+
+  
 \end{document}

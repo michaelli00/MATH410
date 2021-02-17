@@ -12,9 +12,15 @@
 \contentsline {subsection}{\numberline {3.1}Properties of Absolute Value}{3}{subsection.3.1}% 
 \contentsline {subsection}{\numberline {3.2}Triangle Inequality}{3}{subsection.3.2}% 
 \contentsline {section}{\numberline {4}Numerical Formulas}{3}{section.4}% 
-\contentsline {section}{\numberline {5}Sequences}{3}{section.5}% 
+\contentsline {section}{\numberline {5}Sequences}{4}{section.5}% 
 \contentsline {subsection}{\numberline {5.1}Comparison Lemma}{4}{subsection.5.1}% 
 \contentsline {subsection}{\numberline {5.2}Sequence Boundness}{4}{subsection.5.2}% 
 \contentsline {subsection}{\numberline {5.3}Set Density Using Sequences}{4}{subsection.5.3}% 
 \contentsline {subsection}{\numberline {5.4}Monotone Sequences}{4}{subsection.5.4}% 
 \contentsline {subsubsection}{\numberline {5.4.1}Monotone Convergence Theorem}{4}{subsubsection.5.4.1}% 
+\contentsline {subsubsection}{\numberline {5.4.2}Nested Interval Theorem}{4}{subsubsection.5.4.2}% 
+\contentsline {subsection}{\numberline {5.5}Subsequences}{5}{subsection.5.5}% 
+\contentsline {section}{\numberline {6}Continuous Functions}{5}{section.6}% 
+\contentsline {subsection}{\numberline {6.1}Extreme Value Theorem}{5}{subsection.6.1}% 
+\contentsline {subsection}{\numberline {6.2}Intermediate Value Theorem}{6}{subsection.6.2}% 
+\contentsline {subsection}{\numberline {6.3}Uniform Continuity}{6}{subsection.6.3}% 
