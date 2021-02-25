@@ -59,7 +59,7 @@ If $\{a_n\} \rightarrow a$, then every subsequence $\{a_{n_k}\} \rightarrow a$
 **Example**: $f(x) = x^2 - 2x + 4$ is continuous $\mathbb{R} \rightarrow \mathbb{R}$.   
 Let $x_0$ be arbitrary and $\{x_n\} \rightarrow x_0$ Then
 $$\lim_{n \rightarrow \infty}{f(x_n)} = \lim_{n \rightarrow \infty}{[x^2_n - 2_n + 4]} = x^2_0 - 2x_0 + 4 = f(x_0)$$    
-**Example**: $f(x) = \begin{cases} 1 & x\geq 0 \\ 0 & x < 0 \end{cases}$    
+**Example**: $f(x) = \begin{cases} 1 & x\geq 0 \\ 2 & x < 0 \end{cases}$    
 Consider $\{-1/n\} \rightarrow 0$. $\lim_{n \rightarrow \infty}{f(-1/n)} = 2 \neq 1 = f(0)$. Thus $f$ is not continuous at $x = 0$.     
 **Example**: $f(x) = \begin{cases} 1 & x\in \mathbb{Q} \\ 0 & x \in \mathbb{I} \end{cases}$   
 No point in $f$ is continuous. Let $\{u_n\} \subseteq \mathbb{Q}$ converge to $x_0$ and $\{v_n\} \subseteq \mathbb{I}$ converge to $x_0$. Then    
