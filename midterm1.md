@@ -1,3 +1,6 @@
+---
+geometry: margin=2cm
+---
 **Theorem 2.18**: Every convergent sequence is bounded:   
 **Proof**: let $\epsilon > 0$ be arbitrary. Then $\exists N$ such that $\forall n \geq N, |a_n - a| < \epsilon$   
 Let $M = \max(|a_1|, |a_2|, \ldots, |a_N|, |a_N| + \epsilon)$, then $\forall n \geq 1, M \geq |a_n|$    
@@ -72,4 +75,16 @@ Inverse properties
 * Inverse of strictly monotone function is strictly monotone
 
 
-**Theorem 3.29**: if $f \colon I \rightarrow \mathbb{R}$ is strictly monotone then $f^{-1} \colon f(I) \rightarrow \mathbb{R}$ is continuous
+**Theorem 3.29**: if $f \colon I \rightarrow \mathbb{R}$ is strictly monotone then $f^{-1} \colon f(I) \rightarrow \mathbb{R}$ is continuous      
+      
+**Completeness Axiom**: if a non empty set $S$ of real number is bounded above, then $S$ has a least upper bound        
+**Archimedean Property**: for any positive number $c$, there is a natural number $n$ such that $n > c$. Also for any positive $\epsilon$, there is a natural $n$ such that $1/n < \epsilon$   
+  
+**Difference of Powers Formula**:
+$$a^n - b^n = (a-b)(a^{n-1} + a^{n-2}b + \ldots + ab^{n-2} + b^{n-1})$$   
+  
+**Geometric Sum Formula**:
+$$1 + r + r^2 + \ldots + r^n = \frac{1 - r^{n+1}}{1-r}$$    
+    
+**Binomial Formula**:
+$$(a+b)^n = {n \choose 0}a^n + {n \choose 1}a^{n-1}b + \ldots + {n \choose n-1}ab^{n-1} + {n \choose n}b^n$$
