@@ -117,10 +117,11 @@ Since differentiability $\implies$ continuity, $f \colon I \rightarrow \mathbb{R
 </details>
 
 **Theorem 4.14 The Chain Rule**: Let $I$ by a neighborhood of $x_0$ and let $f \colon I \rightarrow \mathbb{R}$ be differentiable at $x_0$. Let $J$ be an open interval such that $f(I) \subseteq J$ and let $g \colon J \rightarrow \mathbb{R}$ be differentiable at $f(x_0)$. Then $g \circ f \colon I \rightarrow \mathbb{R}$ is differentiable at $x_0$ and
+$$(g \circ f)'(x_0) = g'(f(x_0))f'(x_0)$$   
+
 <details><summary><b>Proof</b></summary>
 <p>
 
-$$(g \circ f)'(x_0) = g'(f(x_0))f'(x_0)$$   
 Let $y_0 = f(x_0)$ and $y = f(x)$. Then we have
 $$\frac{f(x) - f(x_0)}{y - y_0} = 1$$
 Using this we have
@@ -163,7 +164,7 @@ Case 2: $f$ has some other maximum or minimum point where the derivative is 0, b
 </p>
 </details>
 
-**Theorem 4.18: Mean value Theorem**: Suppose that $f \colon [a, b] \rightarrow \mathbb{R}$ is continuous and that the restriction of $f$ to the open interval $(a,b)$ is differentiable. Then there is a point $x_0$ in $(a,b)$ such that
+**Theorem 4.18: Mean Value Theorem**: Suppose that $f \colon [a, b] \rightarrow \mathbb{R}$ is continuous and that the restriction of $f$ to the open interval $(a,b)$ is differentiable. Then there is a point $x_0$ in $(a,b)$ such that
 $$f'(x_0) = \frac{f(b) - f(a)}{b - a}$$
 <details><summary><b>Proof</b></summary>
 <p>
