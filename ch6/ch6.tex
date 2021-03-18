@@ -1,0 +1,144 @@
+\documentclass{article}
+\usepackage[top=1in,bottom=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\graphicspath{ {./assets/} }
+\usepackage[none]{hyphenat}
+\setlength{\parindent}{0pt}
+\date{}
+\title{MATH410 Advanced Calculus I}
+\begin{document} 
+  \author{Michael Li}
+  \title{MATH410 Advanced Calculus I}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \section{Chapter 6 Integrals}
+  Basic idea of what an integral represents:
+
+  For an integratable $f \colon [a,b] \rightarrow \mathbb{R}$ with $f(x) \geq 0$ for all $x \in [a, b]$,
+  
+  $\int_a^bf$ is the area under $f$ and above the interval $[a, b]$
+  \subsection{Darboux Sums}
+  For reals $a < b$, $n \in \mathbb{N}$, and $a=x_0, \ldots x_{n} = b$,
+
+  $P = \{x_0, \ldots, x_n\}$ is a \textbf{partition} of the interval $[a, b]$.
+
+  For an index $i \geq 0$, $x_1$ is called a \textbf{partition point} of $P$
+
+  For $i \geq 1$, $[x_{i-1}, x_i]$ is a \textbf{partition interval} of $P$.
+  \newline \newline
+  Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and $P = \{x_0, \ldots, x_n\}$ is a partition of $[a, b]$, then for $i \geq 1$:
+
+  \[m_i = \inf\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+  \[M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+  We use $m_i$ and $M_i$ to define the \textbf{Lower and Upper Darboux Sums} for $f$ based on partition $P$
+  \[L(f, P) = \sum_{i = 1}^{n}m_i(x_i - x_{i-1})\]
+  \[U(f, P) = \sum_{i = 1}^{n}M_i(x_i - x_{i-1})\]
+  Since $m_i \leq M_i$ for each $i \geq 1$, we have
+  \[L(f, P) \leq U(f, P) \text{ for any partition } P \text{ of } [a,b]\]
+  Also useful to note that for any partition of $[a, b]$:
+  \[b - a = \sum_{i = 1}^{n}(x_i - x_{i-1})\]
+  \textbf{Lemma 6.1}: if $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and for $m, M$: $m \leq f(x) \leq M \text{ for all } x \in [a,b]$ then 
+  \[m(b-a) \leq L(f, P) \text{ and } U(f, P) \leq M(b-a)\]
+  \textbf{Proof}: $m$ is a lower bound for all $m_i$ as defined above so we have:
+  \[m(b-a) = \sum_{i = 1}^{n}m(b-a) \leq \sum_{i=1}^{n}{m_i}(b-a) = L(f, P)\]
+  Similar proof is applied for $U(f, P) \leq M(b-a)$ \newline \newline
+  Partition $P^*$ is the \textbf{refinement} of partition $P$ if each partition pt of $P$ is a partition pt of $P^*$
+
+  Partition pts of $P^*$ that belong to the partition interval $[x_{i-1}, x_i]$ define a sub-partition $P_i$. Observe:
+  \[\sum_{i=1}^{n}L(f, P_i) = L(f, P^*) \text{ and } \sum_{i = 1}^{n}U(f, P_i) = U(f, P^*)\]
+  \textbf{Lemma 6.2 Refinement Lemma}: Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and that $P$ is a partition of $[a, b]$. If $P^*$ is a refinement of $P$ then:
+  \[L(f, P) \leq L(f, P^*) \text{ and } U(f, P^*) \leq U(f, P)\]
+  \textbf{Proof}: Let $P = \{x_0, \ldots, x_n\}$, for index $i \geq 1$, define $m_i$ the same as above, and let $P_i$ be the partition of $[x_{i-1}, x_i]$ induced by $P^*$. Applying Lemma 6.1 to $f \colon [x_{i-1}, x_i] \rightarrow \mathbb{R}$ gives:
+  \[m_i(x_i - x_{i-1}) \leq L(f, P_i)\]
+  Taking the sum of all $n$ sub-partitions gives
+  \[L(f, P) \leq \sum_{i = 1}^{n}L(f, P_i) = L(f, P^*)\]
+  Similar argument can be done to show $U(f, P^*) \leq U(f,P)$ \newline \newline
+  Given partitions $P_1, P_2$ of $[a,b]$, a \textbf{common refinement} $P^*$ can be formed by taking the union of the partition pts of $P_1, P_2$
+
+  \textbf{Lemma 6.3}: Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and that $P_1, P_2$ are partitions of $[a, b]$ then:
+  \[L(f, P_1) \leq U(f, P_2)\]
+  \textbf{Proof}: Let $P^*$ be the common refinement of $P_1, P_2$. By the Refinement Lemma, we have:
+  \[L(f, P_1) \leq L(f, P^*) \leq U(f, P^*) \leq U(f, P_2)\]
+  \subsection{Lower and Upper Integrals}
+  Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded. We can define the lower and upper integrals on $[a,b]$ as:
+  \[\lowint_{a}^{b}f = \sup\{L(f, P) \colon P \text{ is a partition of } [a,b]\}\]
+  \[\upint_{a}^{b}f = \inf\{L(f, P) \colon P \text{ is a partition of } [a,b]\}\]
+  \textbf{Lemma 6.4}: for a bounded $f \colon [a, b] \rightarrow \mathbb{R}$
+  \[\lowint_{a}^{b}f \leq \upint_{a}^{b}f\]
+  \textbf{Proof}: Let $P$ be a partition of $[a, b]$. By Lemma 6.3, $U(f, P)$ is an upperbound for all Lower Darboux Sums of $f$. Thus:
+  \[\lowint_{a}^{b}f \leq U(f, P)\]
+  This inequality implies that $\lowint_{a}^{b}$ is a lower bound for all Upper Darboux Sums of $f$. Thus, by definition of infimum:
+  \[\lowint_{a}^{b}f \leq \upint_{a}^{b}f\]
+  \subsection{Archimedes-Riemann Theorem}
+  Suppose $f \colon [a,b] \rightarrow \mathbb{R}$ is bounded. Then $f$ is \textbf{integrable} on $[a,b]$ if
+  \[\lowint_{a}^{b}f = \upint_{a}^{b}f\]
+  When this condition is met, the integral of $f$ over $[a,b]$ is defined as
+  \[\lowint_{a}^{b}f = \int_{a}^{b} = \upint_{a}^{b}f\]
+  \textbf{Lemma 6.7}: For a bounded $f \colon [a, b] \rightarrow \mathbb{R}$ and partition $P$ of $[a,b]$,
+  \[L(f, P) \leq \lowint_{a}^{b}f \leq \upint_{a}^{b}f  \leq U(f, P)\]
+  This creates 3 useful inequalities
+  \[ 0 \leq \upint_{a}^{b}f  - \lowint_{a}^{b}f \leq U(f, P) - L(f, P)\]
+  \[ 0 \leq U(f, P) - \upint_{a}^{b}f \leq U(f, P) - L(f, P)\]
+  \[ 0 \leq \lowint_{a}^{b}f  - L(f, P) \leq U(f, P) - L(f, P)\]
+  \textbf{Proof}: by definition of lower and upper integrals
+  \[L(f, P) \leq \lowint_{a}^{b} f \text{ and } \upint_{a}^{b} \leq U(f, P)\]
+  Using Lemma 6.4 we get:
+  \[L(f, P) \leq \lowint_{a}^{b}f \leq \upint_{a}^{b}f  \leq U(f, P)\]
+  \textbf{Theorem 6.8 Archimedes-Riemann Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be bounded. Then $f$ is integrable on $[a, b]$ if and only if there is a sequence $\{P_n\}$ of partitions of $[a,b]$ such that
+  \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = 0\]
+  Moreover, for any such sequence of partitions,
+  \[\lim_{n \rightarrow \infty}L(f, P_n) = \int_a^bf \text{ and} \lim_{n \rightarrow \infty}U(f, P_n) = \int_a^bf\]
+  \textbf{Proof} Forward: suppose that such a sequence of partitions exists satisfying the equation. Using Lemma 6.7, for an index $n$, $P_n$ satisfies the inequality
+  \[ 0 \leq \upint_{a}^{b}f  - \lowint_{a}^{b}f \leq \lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = 0\]
+  Thus 
+  \[\lowint_{a}^{b}f = \upint_{a}^{b}f \text{ as desired and } f \text{ is integrable over } [a,b]\]
+  \textbf{Proof} Backwards: fix a natural number $n$. By definition of lower integral and least upper bound, 
+  \[\left(\lowint_{a}^{b}f\right) - 1/n \text{ is not an upper bound for the Lower Darboux Sums of } f\]
+  Thus for some partition $P'$ of $[a,b]$
+  \[\lowint_{a}^{b}f - 1/n  < L(f, P')\]
+  Similar for upper integral and some partition $P''$ of $[a, b]$
+  \[U(f, P'') < \left(\upint_{a}^{b}f\right) + 1/n\]
+  By the Refinement Lemma, the 2 inequalities above hold for a common refinement, $P_n$, of $P', P''$. Thus,
+  \[ 0 \leq U(f, P_n) - L(f, P_n) < \left[\left(\upint_{a}^{b}f\right) + 1/n\right] - \left[\left(\lowint_{a}^{b}f\right) - 1/n\right] = 2/n\]
+  Thus,
+  \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = 0\]
+  The sequence of partitions $\{P_n\}$ that satisfies the Archimedes-Riemann Theorem is called the \textbf{Archimedean sequence of partitions}, satisfying:
+  \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f,P_n)] = 0\]
+  For a $n \in \mathbb{N}$, the partition $P = \{x_0, \ldots, x_n\}$ of $[a, b]$ is called the \textbf{regular partition} of $[a,b]$ into $n$ partition intervals (of length $(b-a)/n)$ if:
+  \[x_i = a + i\frac{b - a}{n} \text { for } 0 \leq i \leq n\]
+  For partition $P$ of $[a,b]$, the \textbf{gap} of $P$, denoted $\text{gap }P$, is the length of the largest partition interval:
+  \[\text{gap }P = \max_{i \leq i \leq n}[x_i - x_{i-1}]\]
+  \textbf{Example 6.9}: A montonically increasing $f \colon [a, b] \rightarrow \mathbb{R}$ is integrable. Let $P = \{x_0, \ldots, x_n\}$ be a partition of $[a, b]$. Since $f$ is monotonically decreasing, we can define for any index $i \geq 1$:
+  \[m_i = \inf\{f(x) \colon x \in [x_{i-1}, x_i] = f(x_{i-1})\]
+  \[M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i] = f(x_{i})\]
+    Divide $P$ into regular partitions and for $n \in \mathbb{N}$, take $P_n$. Then
+    \[U(f,P_n) - L(f, P_n) = \sum_{i = 1}^{n}(M_i - m_i)(x_i - x_{i-1}) = \sum_{i = 1}^{n}(M_i - m_i)\frac{b-a}{n} =\frac{b-a}{n}(f(b) - f(a))\]
+    Thus
+    \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = \lim_{n \rightarrow \infty}\frac{(f(b) - f(a))(b-a)}{n} = 0\]
+    \textbf{Example 6.11}: Let $f(x) = x^2$ for $x \in [0, 1]$. Show that
+    \[\int_{0}^{1}x^2dx = 1/3\]
+    Since $f(x)$ is monotonically increasing, it is integrable on $[0, 1]$ (shown in Example 6.9)
+
+    Define a regular partition $P_n$ of $[0,1]$. Since $\{P_n\}$ is an Archimedean sequence of partitions for $f$ on $[0,1]$ (Example 6.9), by Archimedes-Rieman Theorem:
+    \[\int_{0}^{1}x^2dx = \lim_{n \rightarrow \infty}U(f, P_n)\]
+    For index $i \geq 1$, we have
+    \[M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i]\} = f(x_i) = i^2/n^2\]
+    \[x_i - x_{i-1} = 1/n\]
+    Thus,
+    \[M_i(x - x_{i-1}) = i^2/n^3\]
+    Using the sum of squares we get
+    \[U(f, P_n) = \sum_{i = 1}^{n}M_i(x_i - x_{i-1}) = (1/n^3)\left(\sum_{i=1}^{n}i^2\right) = \frac{n(n+1)(2n+1)}{6n^3}\]
+    Therefore,
+    \[\int_{0}^1x^2dx = \lim_{n \rightarrow \infty}U(f, P_n) = \lim_{n \rightarrow \infty}\frac{n(n+1)(2n+1)}{6n^3} = 1/3\]
+\end{document}
