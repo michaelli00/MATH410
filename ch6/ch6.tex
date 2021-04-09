@@ -51,11 +51,11 @@
   \textbf{Lemma 6.1}: if $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and for $m, M$: $m \leq f(x) \leq M \text{ for all } x \in [a,b]$ then 
   \[m(b-a) \leq L(f, P) \text{ and } U(f, P) \leq M(b-a)\]
   \textbf{Proof}: $m$ is a lower bound for all $m_i$ as defined above so we have:
-  \[m(b-a) = \sum_{i = 1}^{n}m(b-a) \leq \sum_{i=1}^{n}{m_i}(b-a) = L(f, P)\]
+  \[m(b-a) = \sum_{i = 1}^{n}m(x_i-x_{i-1}) \leq \sum_{i=1}^{n}{m_i}(x_i-x_{i-1}) = L(f, P)\]
   Similar proof is applied for $U(f, P) \leq M(b-a)$ \newline \newline
   Partition $P^*$ is the \textbf{refinement} of partition $P$ if each partition pt of $P$ is a partition pt of $P^*$
 
-  Partition pts of $P^*$ that belong to the partition interval $[x_{i-1}, x_i]$ define a sub-partition $P_i$. Observe:
+  Partition pts of $P^*$ that belong to the partition interval $[x_{i-1}, x_i]$ define a partition interval $P_i$. Observe:
   \[\sum_{i=1}^{n}L(f, P_i) = L(f, P^*) \text{ and } \sum_{i = 1}^{n}U(f, P_i) = U(f, P^*)\]
   \textbf{Lemma 6.2 Refinement Lemma}: Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and that $P$ is a partition of $[a, b]$. If $P^*$ is a refinement of $P$ then:
   \[L(f, P) \leq L(f, P^*) \text{ and } U(f, P^*) \leq U(f, P)\]
@@ -73,7 +73,7 @@
   \subsection{Lower and Upper Integrals}
   Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded. We can define the lower and upper integrals on $[a,b]$ as:
   \[\lowint_{a}^{b}f = \sup\{L(f, P) \colon P \text{ is a partition of } [a,b]\}\]
-  \[\upint_{a}^{b}f = \inf\{L(f, P) \colon P \text{ is a partition of } [a,b]\}\]
+  \[\upint_{a}^{b}f = \inf\{U(f, P) \colon P \text{ is a partition of } [a,b]\}\]
   \textbf{Lemma 6.4}: for a bounded $f \colon [a, b] \rightarrow \mathbb{R}$
   \[\lowint_{a}^{b}f \leq \upint_{a}^{b}f\]
   \textbf{Proof}: Let $P$ be a partition of $[a, b]$. By Lemma 6.3, $U(f, P)$ is an upperbound for all Lower Darboux Sums of $f$. Thus:
@@ -84,7 +84,7 @@
   Suppose $f \colon [a,b] \rightarrow \mathbb{R}$ is bounded. Then $f$ is \textbf{integrable} on $[a,b]$ if
   \[\lowint_{a}^{b}f = \upint_{a}^{b}f\]
   When this condition is met, the integral of $f$ over $[a,b]$ is defined as
-  \[\lowint_{a}^{b}f = \int_{a}^{b} = \upint_{a}^{b}f\]
+  \[\lowint_{a}^{b}f = \int_{a}^{b}f = \upint_{a}^{b}f\]
   \textbf{Lemma 6.7}: For a bounded $f \colon [a, b] \rightarrow \mathbb{R}$ and partition $P$ of $[a,b]$,
   \[L(f, P) \leq \lowint_{a}^{b}f \leq \upint_{a}^{b}f  \leq U(f, P)\]
   This creates 3 useful inequalities
@@ -141,4 +141,102 @@
     \[U(f, P_n) = \sum_{i = 1}^{n}M_i(x_i - x_{i-1}) = (1/n^3)\left(\sum_{i=1}^{n}i^2\right) = \frac{n(n+1)(2n+1)}{6n^3}\]
     Therefore,
     \[\int_{0}^1x^2dx = \lim_{n \rightarrow \infty}U(f, P_n) = \lim_{n \rightarrow \infty}\frac{n(n+1)(2n+1)}{6n^3} = 1/3\]
+    \subsection{Additivity, Monotonicity, Linearity}
+    \textbf{Theorem 6.12 Additivity over Intervals}: Let $f \colon [a, b] \rightarrow \mathbb{R}$ be integrable over $[a, b]$ and let $c \in (a, b)$. Then $f$ is integrable over $[a,c]$ and $[c, b]$, and
+    \[\int_a^b f = \int_a^c f+ \int_c^b f\]
+    \textbf{Proof}: since $f$ is integrable on $[a, b]$, by the Archimedes-Riemann Theorem, there is an Archimedean sequence of partitions $\{P_n\}$ for $f$ on $[a, b]$ such that
+    \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = 0\]
+    and
+    \[\lim_{n \rightarrow \infty}U(f, P_n) = \int_a^b f\]
+    Since $c$ belongs to each partition $P_n$, let $P'_n$ be the partition induced on $[a, c]$ and $P''_n$ be the partition induced on $[c,b]$. Then from the definition of Darboux Sums
+    \[U(f, P_n) = U(f, P'_n) + U(f, P''_n)\]
+    \[L(f, P_n) = L(f, P'_n) + L(f, P''_n)\]
+    Thus
+    \[U(f, P_n) - L(f, P_n) = [U(f, P'_n) - L(f, P'_n)] + [U(f, P''_n) - L(f, P''_n)]\]
+    Since $P_n$ is an Archiemedean sequence of partitions, the limits of the two terms in brackets is $0$. Thus, by Archimedes-Riemann Theorem, $f$ is integrable on $[a, c]$ and on $[c, b]$, and
+    \[\lim_{n \rightarrow} U(f, P'_n) = \int_a^c f \text{ and } \lim_{n \rightarrow \infty}U(f, P''_n) = \int_c^b f\]
+    Thus, combining the limits we have
+    \[\int_a^b f = \lim_{n \rightarrow \infty}U(f, P_n) = \int_a^c f + \int_c^b f\]
+    \textbf{Theorem 6.13 Monotonicity of Integrals}: let $f \colon [a, b] \rightarrow \mathbb{R}$ and $g \colon [a, b] \rightarrow \mathbb{R}$ be integrable and $f(x) \leq g(x)$ for all $x \in [a,b]$. Then
+
+    \[\int_a^b f \leq \int_a^b g\]
+    \textbf{Proof}: By the Archimedes-Riemann Theorem and Refinement Theorem, there exists a sequence of partitions $\{P_n\}$ such that $\lim_{n \rightarrow \infty}U(f, P_n) = \int_a^b f \text{ and  } = \int_a^b g$
+
+    Since $f(x) \leq g(x)$ by hypothesis, by the definition of Upper Darboux Sums,
+    \[U(f, P_n) \leq U(g, P_n) \text{ for each index } n\]
+    Thus
+    \[\int_a^b f = \lim_{n \rightarrow \infty}U(f, P_n) \leq \lim_{n \rightarrow \infty}U(g, P_n) = \int_a^b g\]
+    \textbf{Lemma 6.14}: let $f \colon [a, b] \rightarrow \mathbb{R}$ and $g \colon [a, b] \rightarrow \mathbb{R}$ by bounded functions and let $P$ be a partition of $[a, b]$. Then
+    \[L(f, P) + L(g, P) \leq L(f + g, P) \text{ and } U(f + g, P) \leq U(f, P) + U(g, P)\]
+    \[U(\alpha f, P) = \alpha U(f, P) \text{ and } L(\alpha f, P) = \alpha L(f, P) \text{ if } \alpha \geq 0\]
+    \[U(\alpha f, P) = \alpha L(f, P) \text{ and } L(\alpha f, P) = \alpha U(f, P) \text{ if } \alpha \leq 0\]
+    \textbf{Proof}: Choose an interval $I_i$ of partition $P$ and for a bounded function $h \colon [a,b] \rightarrow \mathbb{R}$ define
+    \[M_i(h) = \sup\{h(x) \colon x \in I_i\} \text{ and } m_i(h) = \inf\{h(x) \colon x \in I_i\}\]
+    Thus for any $x \in I_i$,
+    \[f(x) + g(x) \leq M_i(f) + M_i(g)\]
+    By definition of supremum, we have
+    \[M_i(f + g) \leq M_i(f) + M_i(g)\]
+    Finally, multiplying this inequality by the length of $I_i$ and summing over all intervals of $P$ yields the first part of the lemma
+
+    To prove the second part, notice that
+    \[M_i(\alpha f) = \alpha M_i(f) \text{ and } m_i(\alpha f) = \alpha m_i(f) \text{ if } \alpha \geq 0\]
+    \[M_i(\alpha f) = \alpha m_i(f) \text{ and } m_i(\alpha f) = \alpha M_i(f) \text{ if } \alpha \leq 0\]
+    Then summing over all intervals, we get the second part of the lemma\bigskip
+
+    \textbf{Theorem 6.15 Linearity of Integrals}: Let $f\colon [a, b] \rightarrow \mathbb{R}$ and $g \colon [a,b] \rightarrow \mathbb{R}$ by integrable. Then for any numbers $\alpha, \beta$ the function $\alpha f + \beta g \colon [a, b[ \rightarrow \mathbb{R}$ is integrable and
+    \[\int_a^b[\alpha f + \beta g] = \alpha \int_a^b f + \beta \int_a^b g\]
+    \textbf{Proof}: By Archimedes-Riemann Theorem and the Refinement Lemma, there is a sequence $\{P_n\}$ of partitions of $[a,b]$ that is both an Archimedean sequence of partitions of $f$ and for $g$ on $[a, b]$
+
+    \textbf{Case 1}: $\beta = 0$. For an index $n$, we have
+    \[U(\alpha f, P_n) - L(\alpha f, P_n) = |\alpha|U(f, P_n) - L(f, P_n)]\]
+    Since $\{P_n\}$ is an Archimedean sequence of partitions for $f$ on $[a, b]$ it is also an Archmidean sequence of partitions for $\alpha f$ on $[a, b]$. By Lemma 6.14
+    \[U(\alpha f, P_n) = \begin{cases} \alpha U(f, P_n) & \alpha \geq 0 \\ \alpha L(f, P_n) & \alpha \leq 0 \end{cases}\]
+    However, by Archimedean-Riemann Theorem, for $\alpha \geq 0$
+    \[\int_a^b \alpha f = \lim_{n \rightarrow \infty}U(\alpha f, P_n) = \alpha \lim_{n \rightarrow \infty} U(f< P_n) = \alpha \int_a^b f\]
+    If $\alpha \leq 0$
+    \[\int_a^b \alpha f = \lim_{n \rightarrow \infty}U(\alpha f, P_n) = \alpha \lim_{n \rightarrow \infty} L(f< P_n) = \alpha \int_a^b f\]
+    \textbf{Case 2}: $\alpha = \beta = 1$. For an index $n$, we have
+    \[L(f, P_n) + L(g, P_n) \leq L(f + g, P_n) \leq U(f + g, P_n) \leq U(f, P_n) + U(g, P_n)\]
+    From Archimedes-Riemann Theorem, the sequence of partitions satisfy
+    \[\lim_{n \rightarrow \infty} L(f + g, P_n) = \lim_{n \rightarrow \infty} U(f + g, P_n) = \int_a^b f + \int_a^b g\]
+    Thus we have
+    \[\int_a^b [f + g] = \int_a^b f + \int_a^b g\]
+    \textbf{General case}: follow by some combination of case 1 and case 2 \bigskip
+
+    \textbf{Corollary 6.16}: Let $f \colon [a, b] \rightarrow \mathbb{R}$ and $|f| \colon [a,b] \rightarrow \mathbb{R}$ be integrable. Then
+      \[\left|\int_a^b f (x) dx \right| \leq \int_a^b |f(x)| dx\]
+      \textbf{Proof}: For all $x \in [a, b]$,
+      \[-|f(x)| \leq f(x) \leq |f(x)|\]
+      Using the monotonicity and linearity of integration, we have
+      \[-\int_a^b |f(x)| dx \leq \int_a^b f(x)dx \leq \int_a^b |f(x) dx\]
+      Thus by definition of absolute value, the corollary holds.
+    \subsection{Continuity and Integrability}
+    \textbf{Lemma 6.17}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous and let $P$ be a partition of $[a,b]$. Then there is a partition interval of $P$ that contains the points $u,v$ where
+    \[0 \leq U(f, P) - L(f, P) \leq [f(v) - f(u)][b-a]\]
+    \textbf{Proof}: Let $P = \{x_0, \ldots, x_n\}$. For index $i \geq 1$, since $f$ is continuous on the closed bounded partition interval $[x_{i-1}, x_i]$, by the Extreme Value Theorem, this partition interval has a max value and a min value. Thus there are points $u_i$ and $v_i$ in $[x_{i-1}, x_i]$ such that
+
+    \[f(u_i) = m_i = \inf\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+    \[f(v_i) = M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+    Choosing an index $i_0$ such that
+    \[M_{i_0} - m_{i_0} = \max_{1 \leq i \leq n}[M_i - m_i]\]
+    and defining $u = u_{i_0}$ and $v = v_{i_0}$ we have
+    \[M_i - m_i \leq M_{i_0} - m_{i_0} = f(v) - f(u) \text{ for } i \leq i_0 \leq n\]
+    Thus we have
+    \[U(f, P) - L(f, P) = \sum_{i = 1}^n [M_i - m_i][x_i - x_{i-1}] \leq \sum_{i = 1}^n[f(v) - f(u)][x_i - x{i-1}] = [f(v) - f(u)][b-a]\]
+    \textbf{Theorem 6.18}: A continuous function on a closed bounded interval is integrable
+
+    \textbf{Proof}: Let $\{P_n\}$ be any sequence of partitions of $[a,b]$ such that $\lim_{n \rightarrow \infty} \text{gap } P_n = 0$
+
+    Since $u_n$ and $v_n$ belong to the common partition interval $P_n$
+
+    \[|v_n - u_n| \leq \text{ gap } P_n\]
+    Furthermore, since the function is continuous we know that
+    \[\lim_{n \rightarrow \infty}[u_n - v_n] = 0\]
+    Since $f$ is continuous on a closed bounded interval, by Theorem 3.17, it is uniformly continuous and thus
+    \[\lim_{n \rightarrow \infty}[f(u_n) - f(v_n)] = 0\]
+    Using Lemma 6.17, we have
+    \[0 \leq \lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] \leq \lim_{n \rightarrow \infty}[f(v_n) - f(u_n)][b-a] = 0\]
+    Thus the sequence $\{P_n\}$ is an Archimedean sequence of partitions for $f$ on $[a,b]$. Thus by the Archimedes-Riemann Theorem, $f$ is integrable on $[a,b]$ \bigskip
+
+    \textbf{Theorem 6.19}: If $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded an on the closed interval $[a,b]$ and is continuous on the open interval $(a,b0$ then $f$ is integrable on $[a,b]$ and the value of $\int_a^b f$ does not depend on the values of $f$ at the endpoints of the interval.
 \end{document}

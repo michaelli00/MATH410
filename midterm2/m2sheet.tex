@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[top=0.5in,bottom=0.5in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{parskip}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\begin{document} 
+
+\textbf{Continuity}: $f$ is continuous at $x_0$ iff $\lim_{x \rightarrow x_0}(f(x) - f(x_0)) = 0$ \medskip
+
+\textbf{Uniform Continuity}: if $\lim_{n \rightarrow \infty}[u_n - v_n] = 0$ then $\lim[f(u_n) - f(v_n)] = 0$ \medskip
+
+\textbf{Note}: if $f \colon [a,b] \rightarrow \mathbb{R}$ is continuous, then $f$ is $f$ is uniformly continuous on $[a,b]$ \medskip
+
+\textbf{Identity Criterion}: Let $I$ be an open interval and $f \colon I \rightarrow \mathbb{R}$, $g \colon I \rightarrow \mathbb{R}$ be differentiable on $I$. Then $f'=g'$ iff $f = g + C$. \medskip
+
+\textbf{Integral}: if $f \colon [a,b] \rightarrow \mathbb{R}$ is bounded an $\lowint_a^b f = \upint_a^bf$ then $f$ is integrable on $[a,b]$ \medskip
+
+\textbf{Proof}: if $f \colon [a,b] \rightarrow \mathbb{R}$ is continuous then $\int_a^b f$ exists
+
+Since $f$ is continuous on $[a,b]$, it is uniformly continuous so $\forall \delta >0$ such that $|x - z| < \delta$, $\exists \epsilon$ such that $|f(x) - f(z)| < \epsilon/(b-a)$
+
+By Archimedes Property, there is an $n$ such that $(b-a)/n < \delta$
+
+Let $P_n$ be a regular partition of $[a,b]$ then $U(f,P_n) - L(f,P_n) = \sum_{i= 1}^n(M_i - m_i)\frac{b-a}{n} < \sum_{i=1}^n\frac{\epsilon}{b - a} \frac{b-a}{n} = \epsilon$. \medskip
+
+\textbf{Proof}: If $f \colon [a,b] \rightarrow \mathbb{R}$ is continuous and $F = \int_a^x f(t)$ then $F' = f$ on $a < x < b$ and $F$ is continuous on $[a,b]$
+
+$\lim_{x \rightarrow x_0}\frac{F(x) - F(x_0)}{x - x_0} = \lim \frac{\int_a^x f - \int_a^{x_0}f}{x - x_0} = \lim \frac{\int_{x_0}^x f}{x - x_0} \approx \frac{f(x_0)(x-x_0)}{x-x_0} = f(x_0)$ and is continuous on $(a,b)$
+
+Let $x_n \rightarrow a$ with $a < x_n < b$. Then since $f$ is continuous, $|F(x_n) - F(a)| = |\int_{x_n}^a f - \int_a^a f| \approx|f(a)(x_n - a)| \rightarrow 0$ thus $F$ continuous at $a$ \medskip
+
+\textbf{First Fundamental Theorem}: If $F \colon [a,b] \rightarrow \mathbb{R}$ is continuous and $F' = f$ on $(a,b)$ with $f$ continuous on $(a,b)$ and bounded on $[a,b]$, then $\int_a^b f(t) \, dt = \int_a^b F'(t) \, dt = F(b) - F(a)$
+
+Let $G(x) = \int_a^x f(t)$ for $a \leq x \leq b$. Then by Second Fundamental Theorem, $G'(x) = f(x)$ on $(a,b)$ and $G$ is cont on $[a,b]$
+
+Since $F' = G' = f$, by the Identity Criterion, $G = F + c$ on $(a,b)$
+
+Since $F, G$ are continuous on $[a,b]$ then $G = f + c$ on $[a,b]$ and $\int_a^b f= G(b) - G(a) = (F(a) + c) - (F(a) + c)$ \medskip
+
+\textbf{Integration by Parts}: $\int u \, dv = uv - \int v \, du$
+
+\textbf{Trapezoidal Rule}: $\int_a^b f(x) \approx \frac{b-a}{2n}[f(a) + 2f(x_1) + 2f(x_2)+ \ldots f(b)]$, $E_n^T \leq \frac{M_T}{12n^2}(b-a)^3$ where $M_T = \sup\{|f''(x)| \colon a < x < b\}$
+\begin{itemize}
+  \item If $f$ is linear, $= \int$
+  \item If $f$ is concave up, $\geq \int$
+  \item If $f$ is concave down, $\leq \int$
+\end{itemize}
+
+\textbf{Simpson's Rule}: $\int_a^b f(x) \approx \frac{b-a}{3n}[f(a) + 4f(x_1) + 2f(x_2) \ldots 4f(x_{n-1}) + f(b)]$, $M_S = \sup\{|f^{(4)}| \colon a < x < b\}$
+\begin{itemize}
+  \item $n$ must be positive and even
+\end{itemize}
+
+
+
+\textbf{Example}: Show $g(x) = \sin(x)$ is differentiable:
+
+$g'(x_0) = \lim_{h \rightarrow 0}\frac{\sin(x_0 + h) - \sin(x_0)}{h} = \lim\frac{\sin(x_0)\cos(h) + \sin(h)\cos(x_0) - \sin(x_0)}{h} = \lim\frac{\sin(x_0)(\cos(h) - 1)}{h} + \lim\frac{\sin(h)\cos(x_0)}{h} = \cos(x_0)$
+
+\textbf{Example}: Show that $g(x) = x + \sin(x)$ is strictly increasing
+
+$g'(x) = 1 + \cos(x)$ which is increasing except at $x = \pi + 2n\pi$ which is fine b/c $g(x)$ is continuous at these points
+
+\textbf{Example}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be monotonically increasing, then $\int_a^b f$ exists
+
+Let $\epsilon > 0$ be arbitrary. Then by the Archimedean Property, $0 \leq \frac{b-a}{n}(f(b) - f(a) \leq \epsilon$
+
+Define $P_n$ as a regular partition of $[a,b]$ then since $f$ is increasing on $[a,b]$, $U(f,P_n) - L(f,P_n) = \sum_{i = 1}^n \frac{b-a}{n}(f(b) - f(a)) \leq \epsilon$ \medskip
+
+Rolle's Theorem requires $f$ to be continuous on $[a,b]$ and differentiable on $(a,b)$
+
+Gauss sum is $\frac{(n)(n+1)}{2}$
+
+Darboux sum involves $i$ and $i-1$
+
+
+
+\end{document}
+

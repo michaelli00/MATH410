@@ -1,0 +1,341 @@
+\documentclass{article}
+\usepackage[top=1in,bottom=1in, left=0.5in, right=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{parskip}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+\graphicspath{ {./assets/} }
+\usepackage[none]{hyphenat}
+\date{}
+\title{MATH410 Advanced Calculus Midterm 2}
+\begin{document} 
+  \author{Michael Li}
+  \title{MATH410 Advanced Calculus Midterm 2}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \section{Differentiation}
+  If $x_0 \in (a,b)$, then $(a,b)$ is a \textbf{neighborhood} of $x_0$
+
+  Let $f$ be defined for a neighborhood of $x_0$. Then $f$ is \textbf{differentiable} at $x_0$ if
+  \[f'(x_0) = \lim_{x \rightarrow x_0}\frac{f(x) - f(x_0)}{x - x_0} \text{ exists}\]
+
+  \textbf{Example}: Let $g(x) = \sqrt{x}$. Show that $g'(x) = \frac{1}{2\sqrt{x}}$ for $x > 0$
+
+  \textbf{Solution}: Let $x_0 > 0$. Then
+  \[g'(x_0) = \lim_{x \rightarrow x_0}\frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \rightarrow x_0} \frac{\sqrt{x} - \sqrt{x_0}}{x-x_0} = \lim_{x \rightarrow x_0} \frac{1}{\sqrt{x} + \sqrt{x_0}} = \frac{1}{2\sqrt{x_0}}\]
+
+  \textbf{Example}: show that $g(x) = \sin(x)$ is differentiable
+
+    \textbf{Solution}: For any $x_0$,
+    \begin{align*}
+      g'(x_0) &= \lim_{h \rightarrow 0}\frac{\sin(x_0 + h) - \sin(x_0)}{h} \\
+              &= \lim_{h \rightarrow 0} \frac{(\sin(x_0)\cos(h) + \sin(h) \cos(x_0)) - \sin(x_0)}{h}\\
+              &= \lim_{h \rightarrow 0} \frac{(\sin(x_0))(\cos(h) - 1)}{h} + \lim_{h \rightarrow 0} \frac{\sin(h)\cos(x_0)}{h} \\
+              &= 0 + (1)(\cos(x_0)) = \cos(x_0)
+    \end{align*}
+
+    Assume $f'(x_0)$ exists. Then the \textbf{tangent line} to $f$ at $(x_0, f(x_0))$ for all $x$ is
+    \[y - f(x_0) = f'(x_0)(x-x_0)\]
+    Where $f'(x_0)$ is the \textbf{slope} of the tangent line
+
+    \textbf{Example}: Let $f(x) = \sqrt{x}$. Find the tangent line to $f$ at $(4,2)$
+
+    \textbf{Solution}: First we have
+    \[f'(4) = \lim_{x \rightarrow 4} \frac{\sqrt{x} - \sqrt{4}}{x - 4} = \frac{1}{4}\]
+    Then we have
+    \[y - f(y) = f'(4)(x-4) \implies y - 2 = \frac{1}{4}(x-4)\] \bigskip
+
+    \textbf{Proposition 4.5}: If $f'(x_0)$ exists, then $f$ is continuous at $x_0$
+    \begin{itemize}
+      \item \textbf{Note}: $f$ is continuous at $x_0$ if and only if $\lim_{x \rightarrow x_0}(f(x) - f(x_0)) = 0$
+      \item \textbf{Note}: converse is NOT true. Counterexample: $f(x) = |x|$ is continuous at $x = 0$ but not differentiable at $x= 0$.
+    \end{itemize}
+
+    \textbf{Differentiation Rules}: If $f'(x_0)$ and $g'(x_0)$ exist then
+    \begin{itemize}
+      \item \textbf{Addition}: $(f+g)'(x_0) = f'(x_0) + g'(x_0)$
+      \item \textbf{Product}: $(fg)'(x_0) = f(x_0)g'(x_0) + f'(x_0)g(x_0)$
+      \item \textbf{Quotient}: if $g(x) \neq 0$ then $(\frac{f}{g})'(x_0) = \frac{g(x_0)f'(x_0) - f(x_0)g'(x_0)}{g^2(x_0)}$
+    \end{itemize}
+    
+    \textbf{Theorem 4.11}: Let $I$ be a neighborhood of $x_0$ and let $f \colon I \rightarrow \mathbb{R}$ be continuous and strictly monotone. Assume $f'(x_0)$ exists and $\neq 0$. If $f(x_0) = y_0$ then
+    \[(f^{-1})'(y_0) = \frac{1}{f'(x_0)}\]
+    \begin{itemize}
+      \item \textbf{Note}: since $f \colon I \rightarrow \mathbb{R}$ is strictly increasing, by Theorem 3.29, $f^{-1}$ exists and is continuous on the interval $f(I)$
+    \end{itemize}
+
+    \textbf{Example}: Let $g(x) = x^n$ for $x \geq 0, n \geq 1$. Show that $(g^{-1})'(x)$ exists for $x > 0$
+
+    \textbf{Solution}: Since $g$ is strictly increasing, $g^{-1}$ must exist and $g^{-1}(y) = x = y^{1/n}$ for $y > 0$. By Theorem 4.11,
+    \[(g^{-1})'(y) = \frac{1}{g'(x)} = \frac{1}{nx^{n-1}} = \frac{1}{n}y^{\frac{1}{n} - 1}\] \bigskip
+
+    \textbf{Chain Rule}: Let $f \colon I \rightarrow \mathbb{R}$ and $g \colon J \rightarrow \mathbb{R}$ with $f(I) \subseteq J$. Assume that $f'(x_0)$ and $g'(f(x_0))$ exist. Then
+    \[(g \circ f)'(x_0) = (g'(f(x_0)))(f'(x_0))\]
+    
+    \textbf{Example}: If $h(x) = (1-x^2)^{3/2}$, find $h'(x)$
+    
+    \textbf{Solution}: Let $f(x) = 1-x^2$ and $g(x) = x^{3/2}$, so $h(x) = g(f(x))$. Then by the Chain Rule
+    \[h'(x) = g'(f(x))f'(x) = (\frac{3}{2}(1-x^2)^{1/2})(-2x) = -3x(1-x^2)^{1/2}\] \bigskip
+
+    \textbf{Lemma 4.16}: Let $I$ be a neighborhood of $x_0$ and define $f \colon I \rightarrow \mathbb{R}$ with $f'(x_0)$ exists If $x_0$ is a maximizer or minimizer, then $f'(x_0) = 0$
+
+    \textbf{Rolle's Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous, and let $f$ be differentiable on $(a,b)$ with $f(a) = f(b)$. Then there exists a point $x_0 \in (a,b)$ such that $f'(x_0) = 0$
+
+    \textbf{Mean Value Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous, and let $f$ be differentiable on $(a,b)$. Then there is a point $x_0 \in (a,b)$ such that
+      \[f'(x_0) = \frac{f(b) - f(a)}{b-a}\]
+
+      \textbf{Example}: let $f(x) = x^3 + ax^2 + bx + c$. Show that $f(x) = 0$ has $\leq 3$ solutions
+
+      \textbf{Solution}: By Rolle's Theorem, between any 2 solutions of $f$, there is a solution of $f'$. We have
+      \[f'(x) = 3x^2 + 2ax + b$\]
+      which has at most $2$ solutions. Thus $f$ has at most $3$ solutions.
+
+      \textbf{Example}: Show that $f(x) = x^3 + ax^2 + bx + c = 0$ has at least $1$ solution.
+
+      \textbf{Solution}: Since $\lim_{x \rightarrow \infty} f(x) = \infty$ and $\lim_{x \rightarrow -\infty}f(x) = -\infty$, and since $f$ is continuous, by IVT, there has to be one solution to $f(x) = 0$. \bigskip
+
+      \textbf{Lemma 4.19}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous and let $f'(x) = 0$ for $a < x < b$. Then $f$ is a constant function.
+
+      \textbf{Identity Criterion}: Let $I$ be an open interval and let $f \colon I \rightarrow \mathbb{R}$ and $g \colon I \rightarrow \mathbb{R}$ be differentiable on $I$. Then $f' = g'$ if and only iff there exists a constant $C$ such that $f(x) = g(x) + C$
+
+      \textbf{Example}: Suppose $f'(x) = 4x^3 - 6x^2 + 2x - 3$ and $f(1) = 2$. Find $f(x)$
+
+      \textbf{Solution}: since $\frac{d}{dx} x^n = nx^{n-1}$, we can process $f'(x)$ term by term and use the Identity Criterion to get that for some constant $C$
+      \[f(x) = x^4 - 2x^3 + x^2 - 3x + C\]
+      Since $f(1) = 2$, we have that $C = 5$ Thus
+      \[f(x) = x^4 - 2x^3 + x^2 - 3x + 5\] \bigskip
+
+      \textbf{Corollary 4.21}: If $f' > 0$ on an open interval $I$, then $f$ is strictly increasing on $I$.
+      \begin{itemize}
+        \item \textbf{Note}: if $f$ is continuous on $[a,b]$ and $f' > 0$ on $(a,b)$ then $f$ is strictly increasing on $[a,b]$
+        \item \textbf{Note}: If $f$ is continuous on $[a,b]$ and $f' > 0$ except at a finite number of points $x_1, \ldots, x_n$, then $f$ is strictly increasing on $[a,b]$
+      \end{itemize}
+      \textbf{Example}: $f(x) = x^3$ is strictly increasing on $(- \infty, 0]$ and $[0, \infty)$. Therefore it is strictly increasing on $(- \infty, \infty)$
+
+      \textbf{Example}: Show that $g(x) = x + \sin(x)$ is strictly increasing
+
+      \textbf{Solution}: $g'(x) = 1 + \cos(x) > 0$ except at $x = \pi + 2n \pi$. Therefore $g$ is strictly increasing on $(-\infty, \infty)$ \bigskip
+
+      Let $f \colon D \rightarrow \mathbb{R}$. $x_0 \in D$ is a \textbf{local maximizer} of $f$ is there is a neighborhood $U \subseteq D$ such that for $x \in U, f(x) \leq f(x_0)$. Similar definition for \textbf{local minimizer}.
+
+      \textbf{2nd Derivative Test}: Let $x$ be a point in an open interval $I$ and define $f \colon I \rightarrow \mathbb{R}$. Assume $f'$ and $f''$ exist on $I$ with $f'(x_0) = 0$. Then
+      \begin{itemize}
+        \item $f''(x_0) < 0 \implies x_0$ is a local maximizer
+        \item $f''(x_0) > 0 \implies x_0$ is a local minimizer \bigskip
+      \end{itemize}
+      Following properties of 2nd derivatives on \textbf{open intervals}:
+      \begin{itemize}
+        \item $f'' < 0 \implies f$ is \textbf{concave down}
+        \item $f'' > 0 \implies f$ is \textbf{concave up}
+        \item If $''(x_0)$ changes signs at $x_0 \implies (x_0, f(x_0))$ is an \textbf{inflection point} \bigskip
+      \end{itemize}
+
+      \textbf{Cauchy Mean Value Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ and $g \colon [a,b] \rightarrow \mathbb{R}$ be continuous on $[a,b]$ and differentiable on $(a,b)$ with $g'(x) \neq 0$ for $a < x < b$ and $g(a) \neq g(b)$. Then there is an $x_0 \in (a,b)$ such that
+      \[\frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(x_0)}{g'(x_0)}\]
+      \begin{itemize}
+        \item \textbf{Note}: Cauchy MVT is a generalization of the regular MVT where $g(x) = x$
+      \end{itemize}
+    \section{Integration}
+      For reals $a < b$, $n \in \mathbb{N}$, and $a=x_0, \ldots x_{n} = b$, $P = \{x_0, \ldots, x_n\}$ is a \textbf{partition} of the interval $[a, b]$.
+
+      Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and $P = \{x_0, \ldots, x_n\}$ is a partition of $[a, b]$, then for $i \geq 1$:
+      \[m_i = \inf\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+      \[M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i]\}\]
+      We use $m_i$ and $M_i$ to define the \textbf{Lower and Upper Darboux Sums} for $f$ based on partition $P$
+      \[L(f, P) = \sum_{i = 1}^{n}m_i(x_i - x_{i-1})\]
+      \[U(f, P) = \sum_{i = 1}^{n}M_i(x_i - x_{i-1})\]
+      Since $m_i \leq M_i$ for each $i \geq 1$, we have
+      \[L(f, P) \leq U(f, P) \text{ for any partition } P \text{ of } [a,b]\]
+      Also useful to note that for any partition of $[a, b]$:
+      \[b - a = \sum_{i = 1}^{n}(x_i - x_{i-1})\] \bigskip
+
+      Partition $P^*$ is the \textbf{refinement} of partition $P$ if each partition pt of $P$ is a partition pt of $P^*$
+
+      \textbf{Lemma 6.3}: Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded and that $P, Q$ are partitions of $[a, b]$ then:
+      \[L(f, P) \leq U(f, Q)\] \bigskip
+
+      Suppose $f \colon [a, b] \rightarrow \mathbb{R}$ is bounded. We can define the lower and upper integrals on $[a,b]$ as:
+      \[\lowint_{a}^{b}f = \sup\{L(f, P) \colon P \text{ is a partition of } [a,b]\}\]
+      \[\upint_{a}^{b}f = \inf\{U(f, P) \colon P \text{ is a partition of } [a,b]\}\]
+      \textbf{Lemma 6.4}: for a bounded $f \colon [a, b] \rightarrow \mathbb{R}$
+      \[\lowint_{a}^{b}f \leq \upint_{a}^{b}f\]
+      Suppose $f \colon [a,b] \rightarrow \mathbb{R}$ is bounded. Then $f$ is \textbf{integrable} on $[a,b]$ if
+    \[\lowint_{a}^{b}f = \int_{a}^{b}f = \upint_{a}^{b}f\] \bigskip
+
+    \textbf{Theorem 6.8 Archimedes-Riemann Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be bounded. Then $f$ is integrable on $[a, b]$ if and only if there is a sequence $\{P_n\}$ of partitions of $[a,b]$ such that
+    \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = 0\]
+    Moreover, for any such sequence of partitions,
+    \[\lim_{n \rightarrow \infty}L(f, P_n) = \int_a^bf \text{ and} \lim_{n \rightarrow \infty}U(f, P_n) = \int_a^bf\]
+  \textbf{Example 6.9}: A montonically increasing $f \colon [a, b] \rightarrow \mathbb{R}$ is integrable. Let $P = \{x_0, \ldots, x_n\}$ be a partition of $[a, b]$. Since $f$ is monotonically increasing, we can define for any index $i \geq 1$:
+  \[m_i = \inf\{f(x) \colon x \in [x_{i-1}, x_i] = f(x_{i-1})\]
+  \[M_i = \sup\{f(x) \colon x \in [x_{i-1}, x_i] = f(x_{i})\]
+    Let $P_n$ be a regular partition of $[a,b]$. Then
+    \[U(f,P_n) - L(f, P_n) = \sum_{i = 1}^{n}(M_i - m_i)(x_i - x_{i-1}) = \sum_{i = 1}^{n}(M_i - m_i)\frac{b-a}{n} =\frac{b-a}{n}(f(b) - f(a))\]
+    Thus
+    \[\lim_{n \rightarrow \infty}[U(f, P_n) - L(f, P_n)] = \lim_{n \rightarrow \infty}\frac{(f(b) - f(a))(b-a)}{n} = 0\] \bigskip
+
+  For a $n \in \mathbb{N}$, the partition $P = \{x_0, \ldots, x_n\}$ of $[a, b]$ is called the \textbf{regular partition} of $[a,b]$ into $n$ partition intervals (of length $(b-a)/n)$ if:
+  \[x_i = a + i\frac{b - a}{n} \text { for } 0 \leq i \leq n\]
+  For partition $P$ of $[a,b]$, the \textbf{gap} of $P$, denoted $\text{gap }P$, is the length of the largest partition interval:
+  \[\text{gap }P = \max_{i \leq i \leq n}[x_i - x_{i-1}]\] \bigskip
+
+    \textbf{Theorem 6.12 Additivity over Intervals}: Let $f \colon [a, b] \rightarrow \mathbb{R}$ be integrable over $[a, b]$ and let $c \in (a, b)$. Then $f$ is integrable over $[a,c]$ and $[c, b]$, and
+    \[\int_a^b f = \int_a^c f+ \int_c^b f\]
+    \textbf{Theorem 6.13 Monotonicity of Integrals}: let $f \colon [a, b] \rightarrow \mathbb{R}$ and $g \colon [a, b] \rightarrow \mathbb{R}$ be integrable and $f(x) \leq g(x)$ for all $x \in [a,b]$. Then
+
+    \[\int_a^b f \leq \int_a^b g\]
+    \textbf{Theorem 6.15 Linearity of Integrals}: Let $f\colon [a, b] \rightarrow \mathbb{R}$ and $g \colon [a,b] \rightarrow \mathbb{R}$ by integrable. Then for any numbers $\alpha, \beta$ the function $\alpha f + \beta g \colon [a, b[ \rightarrow \mathbb{R}$ is integrable and
+    \[\int_a^b[\alpha f + \beta g] = \alpha \int_a^b f + \beta \int_a^b g\] \bigskip
+    \textbf{Theorem 6.18}: A continuous function on a closed bounded interval is integrable
+    \begin{itemize}
+      \item \textbf{Note}: if $f \colon [a,b] \rightarrow \mathbb{R}$ is bounded and continuous on $(a, b]$, then $\int_a^b f$ exists
+      \item \textbf{Note}: Similarly if it is continuous on $(a,b)$. This allows for $g (x) = 
+        \begin{cases}
+          0 & x = 0\\
+          \sin(1/x) & 0 < x \leq 1
+        \end{cases}
+        $ to be integrable on the interval $[0,1]$ \bigskip
+    \end{itemize}
+  \textbf{Theorem 6.28}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous and let $F(x) = \int_a^x f(t) \, dt$ for $a \leq x \leq b$. Then
+  \[F'(x) = f(x) \text{ for } a < x < b \text{ and } F \text{ is continuous on } [a,b]\]
+  \textbf{Second Fundamental Theorem}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous. Then
+    \[\frac{d}{dx} \int_a^x f = f(x) \text{ for } x \in (a,b)\]
+    \textbf{Corollary 6.32}: Let $I, J$ be open intervals and $f \colon I \rightarrow \mathbb{R}$ and $\phi \colon J \rightarrow \mathbb{R}$ and let $f, \phi$ be differentiable and $\phi(J) \subseteq I$. Then
+    \[\frac{d}{dx} \int_a^{\phi(x)} f(t) \, dt = f(\phi(x))\phi'(x) \text{ for } x \in J\]
+
+    \textbf{Example}: $G = \int_{x^2}^{\sin(x)} e^t \, dt$. Find $G'$
+
+    \textbf{Solution}: 
+
+      $G &= \left(-\int_0^{x^2}e^t \, dt \right) + \int_0^{\sin(x)}e^t \, dt$
+
+      $G' &= -xe^{x^2} + \cos(x)e^{\sin(x)}$
+    \begin{itemize}
+      \item \textbf{Note}: for $a \leq b, \int_b^a f = -\int_a^b f$
+    \end{itemize}
+    \textbf{Example}: $G = \int_0^x \sin(x + t) \, dt$. Find $G'$
+
+    \textbf{Solution}: 
+
+    $G = \left(\int_0^x \sin(x) \cos(t) \, dt \right) + \int_0^x \cos(x)\sin(t) \, dt$
+
+    $G' = \left(\cos(x) \int_0^x \cos(t) \right) + \sin(x)\cos(x) - \left(\sin(x)\int_0^x \sin(t)\right) + \cos(x)\sin(x)$ \bigskip
+
+    \textbf{First Fundamental Theorem}: Let $F \colon [a,b] \rightarrow \mathbb{R}$ be continuous and let $F' = f$ on $(a,b)$ with $f$ continuous on $(a,b)$ and bounded on $[a,b]$. Then
+    \[\int_a^b f(t) \, dt = \int_a^b F'(t) \, dt = F(b) - F(a)\]
+
+    \textbf{Key Notes about Fundamental Theorems}:
+    \begin{itemize}
+      \item First Fundamental Theorem says that the integral of a derivative of $F$ is $F + C$.
+      \item Second Fundamental Theorem says that the derivative of the integral of $f$ is $f$.
+    \end{itemize}
+
+    \textbf{Example}: Let $G(x) = \int_0^x (x-t)f(t) \, dt$. Show that $G''(x) = f(x)$
+
+    \textbf{Solution}: 
+
+    $G(x) = \left(x\int_0^x f(t) \, dt\right) - \int_0^x tf(t) \, dt$
+
+    $G'(x) = \left(\int_0^x f(t) \, dt\right) + xf(x) - xf(x)$
+
+    $G''(x) = f(x)$ \bigskip
+
+    \textbf{Mean Value Theorem of Integrals}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous. Then there is an $x_0 \in [a,b]$ such that
+    \[f(x_0) = \frac{1}{b-a}\int_a^b f(t) \, dt\] \bigskip
+
+    \textbf{Improper Integrals}: If $f$ is continuous on $[a,b)$ with $f$ unbounded near $b$ and if $\lim_{c \rightarrow b^-}\int_a^c f(x) \, dx$ exists as a number, then the integrals converges and
+    \[\int_a^b f(x) \, dx = \lim_{c \rightarrow b^-} \int_a^c f(x) \, dx\]
+
+    \textbf{Example}: Find $\int_1^2 \frac{1}{(x-1)^{4/3}} \, dx$
+
+    \textbf{Solution}: 
+
+    \begin{flalign*}
+      &= \lim_{a \rightarrow 1^+} \int_a^2 \frac{1}{(x-1)^{4/3}} \\
+      &= -3 + \lim_{a \rightarrow 1^+} \frac{3}{(a-1)^{1/3}} \\
+    \end{flalign*}
+    Thus the integral diverges
+
+    \textbf{Example}: Find $\int_2^{\infty} \frac{x}{1+x^4}$.
+
+    \textbf{Solution}:
+
+    \begin{flalign*}
+      &= \lim_{b \rightarrow \infty}\int_2^b \frac{x}{1 + x^4} \, dx \leq \lim_{b \rightarrow \infty} \int_2^b \frac{1}{x^3} \\
+      &= \lim_{b \rightarrow \infty}\frac{-1}{2b^2} + 1/8 = 1/8 \bigskip
+    \end{flalign*}
+
+    \textbf{Integration by Parts}: let $g \colon [a,b] \rightarrow \mathbb{R}$ and $h \colon [a,b] \rightarrow \mathbb{R}$ be continuous and have continuous derivatives on $(a,b)$. Then
+    \[\int_a^b h(x)g'(x) \, dx = h(b)g(b) - h(a)g(a) - \int_a^b g(x) h'(x) \, dx\]
+    \begin{itemize}
+      \item \textbf{Note}: $\int u \, dv = uv - \int v \, du$ \bigskip
+    \end{itemize}
+
+    \textbf{u-substitution}: let $f \colon [a,b] \rightarrow \mathbb{R}$ and $f \colon [c,d] \rightarrow \mathbb{R}$ be continuous with $g'$ bounded and continuous, and let $g(c, d) \subseteq (a,b)$. Then
+    \[\int_c^d f(g(x))g'(x) \, dx = \int_{g(c)}^{g(d)} f(u) \, du \text{ where } u = g(x)\] \bigskip
+
+    \textbf{Trapezoidal Rule}: let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous and define a regular partition $P_n$ of $[a,b]$
+
+      For an interval $[x_{i-1}, x_i]$, by the Mean Value Theorem of Integrals, there is an $x^* \in [x_{i-1}, x_i]$ such that
+      \[\int_{x_{i-1}}^{x_i} f(x) \, dx = f(x^*)(x_i - x_{i-1}) \approx \frac{f(x_{i-1}) + f(x_i)}{2}\frac{b-a}{n}\]
+
+      Thus the Trapezoidal Rule says that
+
+      \[\int_a^b f(x) \, dx \approx \frac{b-a}{2n}[f(a) + 2f(x_1) + \ldots 2f(x_{n-1}) + f(b)]\]
+      \begin{itemize}
+        \item \textbf{Note}: if $f$ is linear, then Trapezoidal Rule = definite integral
+        \item \textbf{Note}: if $f$ is concave up on $(a,b)$ then Trapezoidal Rule $\geq \in5_a^b f(x)$. Similarly, if $f$ is concave down then it is $\leq \int_a^b f(x)$.
+      \end{itemize}
+
+      \textbf{Example}: Approximate $\int_0^2 x^3 \, dx$ with Trapezoidal Rule with $n = 6$
+
+      \textbf{Solution}:
+      \[\int_0^2 x^3 \, dx \approx \frac{2-0}{6}[0^3 + 2(\frac{1}{3})^3 + \ldots + 2(\frac{5}{3})^3 + 2^3]\]
+
+      \textbf{Trapezoidal Error}:
+      \[E^T_n \leq \frac{M_T}{12n^2}(b-a)^3\]
+
+      Where $M_T = \sup(\{|f''(x)| \colon a < x < b\}$
+
+      \textbf{Example}: Let $f(x) = x^3$ on $[0,2]$. Find the smallest reasonable $n >0$ so that $E^T_n \leq 100$  
+
+      \textbf{Solution}: $f''(x) = 6x$ so
+
+      \[E^T_n \leq \frac{12(2-0)^3}{12n^2} \leq {1}{100} \implies n = 29\] \bigskip
+
+      \textbf{Simpson's Rule}: Let $f \colon [a,b] \rightarrow \mathbb{R}$ be continuous and $P_n$ be a regular partition of $[a,b]$. Also define
+        \[ p(x) = f(x_0) + \frac{f(x_1) - f(x_0)}{h} (x-x_0) + \frac{f(x_0) - 2f(x_1) + f(x_2)}{2h^2}(x -x_0)(x-x_1)\]
+
+        Note that $\int_{x_0}^{x_2}p(x) \, dx = \frac{b-a}{3}[f(x_0)+ f(x_1) + f(x_2)]$. If $n$ is even, then we can group the partitions into groups of 3: $\{x_0, x_1, x_2\}, \{x_2, x_3, x_4 \}, \ldots$. This gives us
+
+        \[\int_a^b f(x) \, dx \approx \frac{b-a}{3n}[f(a) + 4(x_1) + 2f(x_2) + 4f(x_4) + \ldots 2f(x_{n-2}) + 4f(x_{n-1})+ f(b)]\]
+        \begin{itemize}
+          \item \textbf{Note}: $n$ must be even to use Simpson's Rule
+          \item \textbf{Note}: restriction on $n$ is not present for Trapezoidal Rule
+        \end{itemize}
+
+        \textbf{Example}: Approximate $\int_0^2 x^5$ with Simpson's Rule and $n=4$
+
+        \textbf{Solution}: 
+        \[\int_0^2 x^5 \approx \frac{2}{12}[0^5 + f(\frac{1}{2})^5 + 2(1)^5 + 4(\frac{3}{2})^5 + 2^5] = 10.75\]
+
+        \textbf{Simpson's Error}:
+        \[E_n^S \leq \frac{M_S(b-a)^5}{180n^4}\] 
+
+        Where $M_S = \sup\{|f^{(4)}(x)| \colon a < x < b\}$
+
+
+
+
+
+
+\end{document}
